@@ -19,6 +19,7 @@ return new class extends Migration
             $table->double('price');
             $table->string('status');
             $table->integer('security_order');
+            $table->foreignId('store_id');
             $table->timestamps();
         });
     }
