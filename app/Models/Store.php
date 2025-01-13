@@ -21,4 +21,9 @@ class Store extends Model implements HasAvatar
     {
         return $this->belongsToMany(User::class, 'store_user');
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
