@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->double('price');
             $table->string('status');
-            $table->integer('security_order');
+            $table->integer('security_stock');
+            $table->integer('quantity');
             $table->foreignId('store_id');
             $table->timestamps();
         });
