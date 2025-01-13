@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Tenancy\EditStore;
 use App\Filament\Pages\Tenancy\RegisterStore;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -31,6 +32,7 @@ class DashboardPanelProvider extends PanelProvider
             ->login()
             ->registration()
             ->tenantRegistration((RegisterStore::class))
+            ->tenantProfile(EditStore::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
