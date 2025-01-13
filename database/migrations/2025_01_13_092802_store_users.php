@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('store_users', function (Blueprint $table) {
-            $table->foreignId('store_id');
-            $table->foreignId('user_id');
-            $table->unique(['store_id', 'user_id']);
+        Schema::create('store_user', function (Blueprint $table) {
+            $table->unsignedBigInteger('store_id');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamps();
+        
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        
+            $table->primary(['store_id', 'user_id']);
         });
     }
 
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('store_users');
+        Schema::dropIfExists('store_user');
     }
 };
