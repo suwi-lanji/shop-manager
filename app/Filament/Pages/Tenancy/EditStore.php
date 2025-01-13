@@ -7,14 +7,14 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
-use Filament\Pages\Tenancy\RegisterTenant;
+use Filament\Pages\Tenancy\EditTenantProfile;
 use Illuminate\Support\Facades\Auth;
 
-class RegisterStore extends RegisterTenant
+class EditStore extends EditTenantProfile
 {
     public static function getLabel(): string
     {
-        return 'Register store';
+        return 'Team profile';
     }
 
     public function form(Form $form): Form
@@ -26,13 +26,5 @@ class RegisterStore extends RegisterTenant
                 Textarea::make('description')->required(),
                 TextInput::make('location')->required(),
             ]);
-    }
-
-    protected function handleRegistration(array $data): Store
-    {
-        $store = Store::create($data);
-        $store->members()->attach(Auth::id());
-
-        return $store;
     }
 }
