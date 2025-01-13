@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('order_number');
             $table->string('status');
             $table->double('amount');
+            $table->foreignId('store_id');
             $table->timestamps();
         });
     }
