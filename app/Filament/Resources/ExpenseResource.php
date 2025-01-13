@@ -25,7 +25,15 @@ class ExpenseResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required(),
-                Forms\Components\TextInput::make('category')
+                Forms\Components\ToggleButtons::make('category')
+                    ->options([
+                        'Utilities' => 'Utilities',
+                        'Rent' => 'Rent',
+                        'Supplies' => 'Supplies',
+                        'Salaries' => 'Salaries',
+                        'Other' => 'Other'
+                    ])
+                    ->inline()
                     ->required(),
                 Forms\Components\TextInput::make('amount')
                     ->required()
@@ -39,8 +47,6 @@ class ExpenseResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('category')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('amount')
                     ->numeric()
                     ->sortable(),
@@ -49,7 +55,7 @@ class ExpenseResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                //Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
