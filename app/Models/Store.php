@@ -26,4 +26,9 @@ class Store extends Model implements HasAvatar
     {
         return $this->hasMany(Product::class);
     }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
 }
