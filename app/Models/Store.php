@@ -12,4 +12,9 @@ class Store extends Model
     {
         return $this->belongsToMany(User::class, 'store_user');
     }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'store_user');
+    }
 }
