@@ -56,6 +56,7 @@ class DashboardPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->maxContentWidth('full')
             ->authMiddleware([
                 Authenticate::class,
             ]);
