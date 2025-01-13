@@ -32,12 +32,12 @@ class OrderResource extends Resource
                 Forms\Components\TextInput::make('amount')
                     ->required()
                     ->numeric(),
-                Forms\Components\Repeater::make('products')
+                Forms\Components\Repeater::make('orderProducts')
                     ->relationship()
                     ->required()
                     ->schema([
-                        Forms\Components\Select::make('name')
-                            ->options(Product::where('store_id', Filament::getTenant()->id)->pluck('name', 'id'))
+                        Forms\Components\Select::make('product_id')
+                            ->relationship('product', 'name')
                             ->required(),
                         Forms\Components\TextInput::make('quantity')
                             ->numeric()
