@@ -50,4 +50,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Store::class, 'store_user');
     }
+    
+    public function getTenants(Panel $panel): Collection
+    {
+        return $this->stores;
+    }
+
+    public function canAccessTenant(Model $tenant): bool
+    {
+        return $this->stores()->whereKey($tenant)->exists();
+    }
 }
