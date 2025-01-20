@@ -106,4 +106,4 @@ ENV VITE_APP_NAME="${APP_NAME}"
 EXPOSE 80
 
 # Start Supervisor to manage Nginx and PHP-FPM
-CMD ["sh", "-c", "php artisan migrate:fresh && supervisord -c /etc/supervisor/conf.d/supervisord.conf"]
+CMD ["sh", "-c", "php artisan migrate:fresh && php artisan serve --host 0.0.0.0 --port 80"]
