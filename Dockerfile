@@ -38,7 +38,10 @@ RUN composer install --optimize-autoloader --no-dev
 
 # Install Node.js dependencies and build assets
 RUN npm install && npm run build
-RUN php artisan migrate:fresh
+
+# Create SQLite database file and set permissions
+RUN touch /var/www/html/database/database.sqlite && chmod 777 /var/www/html/database/database.sqlite
+
 # Copy Nginx configuration
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
@@ -103,4 +106,4 @@ ENV VITE_APP_NAME="${APP_NAME}"
 EXPOSE 80
 
 # Start Supervisor to manage Nginx and PHP-FPM
-CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD bash -c "php artisan migrate:fresh && supervisord -c /etc/supervisor/conf.d/supervisord.conf"
