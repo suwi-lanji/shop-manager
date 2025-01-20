@@ -45,6 +45,9 @@ COPY docker/nginx.conf /etc/nginx/nginx.conf
 # Copy Supervisor configuration
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Create necessary log directories
+RUN mkdir -p /var/log/php-fpm /var/log/nginx /var/log/supervisor
+
 # Set permissions for Laravel storage and bootstrap cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
