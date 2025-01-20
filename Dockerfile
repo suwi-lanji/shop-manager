@@ -38,7 +38,7 @@ RUN composer install --optimize-autoloader --no-dev
 
 # Install Node.js dependencies and build assets
 RUN npm install && npm run build
-
+RUN php artisan migrate:fresh
 # Copy Nginx configuration
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
